@@ -6,10 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AOE_Test
 {
@@ -32,9 +28,13 @@ namespace AOE_Test
                 config.Interceptors.AddTyped<CustomFilter>();
             });
 
-            var useDeco = true;
             services.AddTransient<IFooService, FooService>();
-            if (useDeco) services.Decorate<IFooService, DecoFooService>();
+
+            var useDeco = true;
+            if (useDeco)
+            {
+                services.Decorate<IFooService, DecoFooService>();
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
